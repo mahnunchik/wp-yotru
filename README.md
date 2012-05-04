@@ -1,4 +1,4 @@
 wp-yotru
 ========
 
-Yotru plugin for wordpress
+Yotru plugin for WordPress
