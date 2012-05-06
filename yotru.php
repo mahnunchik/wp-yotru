@@ -46,10 +46,13 @@ register_activation_hook(__FILE__, 'activate_yotru');
 register_deactivation_hook(__FILE__, 'deactive_yotru');
 
 if (is_admin()) {
-  add_action('admin_init', 'admin_init_yotru');
-  add_action('admin_menu', 'admin_menu_yotru');
+    add_action('admin_init', 'admin_init_yotru');
+    add_action('admin_menu', 'admin_menu_yotru');
 }
 
 if (!is_admin()) {
-	add_action('wp_footer', 'yotru');
+    add_action('wp_footer', 'yotru');
 }
+
+include(WP_PLUGIN_DIR.'/wp-yotru/yotru-widget.php');  
+
