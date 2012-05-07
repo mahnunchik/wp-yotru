@@ -28,15 +28,38 @@ function options_page_yotru() {
   include(WP_PLUGIN_DIR.'/wp-yotru/options.php');  
 }
 
+function yotru_button($content){
+    if(is_single()){
+        $content.='<div style="display:none;" id="yo-root"></div><button style="background-image:url('.WP_PLUGIN_URL.'/wp-yotru/yotru.png);" id="yotru-button"></button>';
+    }
+    return $content;
+}
+function yotru_stylesheet(){
+    wp_enqueue_style('yotru', WP_PLUGIN_URL. '/wp-yotru/yotru.css', false, '1.4');
+}
+
 
 function yotru(){
     $api_key = get_option('yotru_api_key');
+    $post = get_post();
 ?>
 <script type="text/javascript" src="http://widget.yotru.com/yotru.js"></script>
 <script type="text/javascript">
 yotru.init({
-   apiKey: "<?php echo $api_key; ?>"
+    apiKey: "<?php echo $api_key; ?>"
 });
+jQuery(function(){
+    jQuery('#yotru-button').click(function() {
+        yotru.addToCart({
+           "id": "<?php echo $post->ID; ?>",
+           "name":"<?php echo get_the_title(); ?>",
+           "price":0,
+           "count":1
+       });
+       yotru.checkout();
+    });
+});
+
 </script>
 <?php
 }
@@ -55,4 +78,7 @@ if (!is_admin()) {
 }
 
 include(WP_PLUGIN_DIR.'/wp-yotru/yotru-widget.php');  
+
+add_action('wp_print_styles', 'yotru_stylesheet');
+add_filter( 'the_content', 'yotru_button' );
 
