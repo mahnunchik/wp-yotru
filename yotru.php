@@ -3,7 +3,7 @@
 Plugin Name: Yotru
 Plugin URI: https://github.com/mahnunchik/wp-yotru
 Description: Yotru plugin for WordPress
-Version: 0.1
+Version: 0.1.2
 Author: Eugeny Vlasenko
 Author URI: http://about.me/vlasenko
 */
