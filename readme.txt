@@ -3,7 +3,7 @@ Contributors: mahnunchik
 Tags: yotru, plugin, facebook, vkontakte, share, trust, javascript
 Requires at least: 2.7
 Tested up to: 3.3.2
-Stable tag: 0.1.2
+Stable tag: 0.1.3
 
 Yotru plugin for WordPress
 

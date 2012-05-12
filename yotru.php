@@ -3,7 +3,7 @@
 Plugin Name: Yotru
 Plugin URI: https://github.com/mahnunchik/wp-yotru
 Description: Yotru plugin for WordPress
-Version: 0.1.2
+Version: 0.1.3
 Author: Eugeny Vlasenko
 Author URI: http://about.me/vlasenko
 */
@@ -25,17 +25,17 @@ function admin_menu_yotru() {
 }
 
 function options_page_yotru() {
-  include(WP_PLUGIN_DIR.'/wp-yotru/options.php');  
+  include(WP_PLUGIN_DIR.'/yotru/options.php');  
 }
 
 function yotru_button($content){
     if(is_single()){
-        $content.='<div style="display:none;" id="yo-root"></div><button style="background-image:url('.WP_PLUGIN_URL.'/wp-yotru/yotru.png);" id="yotru-button"></button>';
+        $content.='<div style="display:none;" id="yo-root"></div><button style="background-image:url('.WP_PLUGIN_URL.'/yotru/yotru.png);" id="yotru-button"></button>';
     }
     return $content;
 }
 function yotru_stylesheet(){
-    wp_enqueue_style('yotru', WP_PLUGIN_URL. '/wp-yotru/yotru.css', false, '1.4');
+    wp_enqueue_style('yotru', WP_PLUGIN_URL. '/yotru/yotru.css', false, '1.4');
 }
 
 
@@ -77,7 +77,7 @@ if (!is_admin()) {
     add_action('wp_footer', 'yotru');
 }
 
-include(WP_PLUGIN_DIR.'/wp-yotru/yotru-widget.php');  
+include(WP_PLUGIN_DIR.'/yotru/yotru-widget.php');  
 
 add_action('wp_print_styles', 'yotru_stylesheet');
 add_filter( 'the_content', 'yotru_button' );
