@@ -9,7 +9,7 @@ Author URI: http://about.me/vlasenko
 */
 
 function activate_yotru() {
-  add_option('yotru_api_key', 'demo');
+  add_option('yotru_api_key', '');
 }
 
 function deactive_yotru() {
