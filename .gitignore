@@ -1,1 +1,5 @@
 nbproject/
+.project
+.settings
+wp-yotru.sublime-project
+wp-yotru.sublime-workspace
