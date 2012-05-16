@@ -3,7 +3,7 @@
 Plugin Name: Yotru
 Plugin URI: https://github.com/mahnunchik/wp-yotru
 Description: Yotru plugin for WordPress
-Version: 0.1.3
+Version: 0.1.4
 Author: Eugeny Vlasenko
 Author URI: http://about.me/vlasenko
 */
@@ -25,7 +25,7 @@ function admin_menu_yotru() {
 }
 
 function options_page_yotru() {
-  include(WP_PLUGIN_DIR.'/yotru/options.php');  
+  include(WP_PLUGIN_DIR.'/yotru/options.php');
 }
 
 function yotru_button($content){
@@ -41,7 +41,10 @@ function yotru_stylesheet(){
 
 function yotru(){
     $api_key = get_option('yotru_api_key');
-    $post = get_post();
+    global $post;
+
+    if ( empty($post) )
+        return false;
 ?>
 <script type="text/javascript" src="http://widget.yotru.com/yotru.js"></script>
 <script type="text/javascript">
@@ -73,12 +76,30 @@ if (is_admin()) {
     add_action('admin_menu', 'admin_menu_yotru');
 }
 
-if (!is_admin()) {
-    add_action('wp_footer', 'yotru');
+function yotru_js_scripts_on_init(){
+    if ( ! is_admin() ) {
+        add_action('wp_footer', 'yotru');
+        wp_enqueue_script('jquery');
+    }
 }
 
-include(WP_PLUGIN_DIR.'/yotru/yotru-widget.php');  
+add_action('init', 'yotru_js_scripts_on_init');
+
+
+include(WP_PLUGIN_DIR.'/yotru/yotru-widget.php');
 
 add_action('wp_print_styles', 'yotru_stylesheet');
 add_filter( 'the_content', 'yotru_button' );
 
+// Adds link to settings page on plugins page
+add_filter( 'plugin_action_links', 'yotru_settings_link', 10, 2 );
+
+function yotru_settings_link($links, $file)
+{
+    if ($file == plugin_basename('yotru/yotru.php'))
+    {
+        $links[] = '<a href="options-general.php?page=yotru">' . __('Settings', 'text_domain') . '</a>';
+    }
+
+    return $links;
+}

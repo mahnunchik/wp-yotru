@@ -22,14 +22,14 @@ class Yotru_Widget extends WP_Widget {
      * @param array $instance Saved values from database.
      */
     public function widget($args, $instance) {
-        
+
         extract($args);
         $title = apply_filters('widget_title', $instance['title']);
 
         echo $before_widget;
         if (!empty($title))
             echo $before_title . $title . $after_title;
-        echo '<div style="width:'.$instance['width'].'px;" id="yo-root"></div>';
+        echo '<div style="width:'.$instance['width'].'px; overflow: hidden; position: relative;" id="yo-root"></div>';
         echo $after_widget;
     }
 
@@ -64,11 +64,11 @@ class Yotru_Widget extends WP_Widget {
         $width = isset($instance['width']) ? $instance['width'] : 400 ;
         ?>
         <p>
-            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label> 
+            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
             <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" />
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id('width'); ?>"><?php _e('Width:'); ?></label> 
+            <label for="<?php echo $this->get_field_id('width'); ?>"><?php _e('Width:'); ?></label>
             <input class="widefat" id="<?php echo $this->get_field_id('width'); ?>" name="<?php echo $this->get_field_name('width'); ?>" type="number" value="<?php echo esc_attr($width); ?>" />
         </p>
         <?php
