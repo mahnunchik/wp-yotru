@@ -3,7 +3,7 @@ Contributors: mahnunchik, wwwarrior
 Tags: yotru, plugin, facebook, vkontakte, share, trust, javascript, store
 Requires at least: 2.7
 Tested up to: 3.3.2
-Stable tag: 0.1.3
+Stable tag: 0.1.4
 
 Yotru plugin for WordPress. The serious problem faced by e-tailer is a lack of trust. Yotru is allows you to solve the trust problem. Yotru do it using visitors' social relations and positive word of mouth. As a result, conversion rate improves and sales increases.
 
